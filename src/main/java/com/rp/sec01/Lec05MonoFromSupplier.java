@@ -3,6 +3,8 @@ package com.rp.sec01;
 import com.rp.courseutil.Util;
 import reactor.core.publisher.Mono;
 
+import java.util.concurrent.Callable;
+
 public class Lec05MonoFromSupplier {
 
     public static void main(String[] args) {
@@ -14,6 +16,13 @@ public class Lec05MonoFromSupplier {
         mono.subscribe(
                 Util.onNext()
         );
+
+        Callable<String> stringCallable = () -> getName();
+        Mono.fromCallable(stringCallable)
+                .subscribe(
+                        Util.onNext()
+                );
+
 
     }
 
